@@ -122,3 +122,15 @@ datetime.datetime(2020, 4, 21, 22, 24, 21, 392709, tzinfo=<UTC>)
 <QuerySet [<Post: Blog 1>, <Post: Blog 2>]>
 >>> user.post_set.create(title='Blog 3', content='Third Post Content!')
 <Post: Blog 3>
+
+
+workflow:
+Ask For Help.
+
+ 
+DEBUG
+False
+ 
+SECRET_KEY
+this is a sentence
+ 
