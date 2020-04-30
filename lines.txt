@@ -1,0 +1,124 @@
+https://django-environ.readthedocs.io/en/latest/
+https://gist.github.com/joke2k/cc30ed2d5ccda52d5b551ccbc17e536b
+
+https://my-django-app-52.herokuapp.com/ | https://git.heroku.com/my-django-app-52.git
+
+start with this
+pipenv install django
+pipenv install
+django = "*"
+djangorestframework = "*"
+python-decouple = "*"
+django-rest-auth = "*"
+django-allauth = "*"
+pusher = "*"
+django-cors-headers = "*"
+gunicorn = "*"
+django-heroku = "*"
+django-rest-api = "*"
+
+enter the shell environment for the project
+pipenv shell
+
+
+start server
+python manage.py runserver
+
+
+from tutorial
+first thing to try
+django-admin startproject adv_project .
+
+pipenv shell
+pipenv install django
+
+enter the shell environment for the project
+pipenv shell
+
+django-admin startproject django_project .
+
+python3 manage.py startapp blog
+cd django_project/
+
+python manage.py runserver
+
+tree
+
+exit pipenv with control d
+
+part 2
+
+https://www.youtube.com/watch?v=a48xeeo5Vnk
+
+https://github.com/dtauraso/Intro-Django/blob/master/guides/trouble.md
+
+
+
+https://code.visualstudio.com/docs/getstarted/settings
+
+apply migration changes
+python manage.py migrate
+
+make and apply migrations
+python manage.py makemigrations
+python manage.py migrate
+
+open migration interativity shell
+python manage.py shell
+
+
+
+>>> from blog.models import Post
+>>> from django.contrib.auth.models import User
+>>> User.objects.all()
+<QuerySet [<User: david>, <User: TestUser>]>
+>>> User.objects.first()
+<User: david>
+>>> User.objects.filter(username='david')
+<QuerySet [<User: david>]>
+>>> User.objects.filter(username='david').first()
+<User: david>
+>>> user = User.objects.filter(username='david').first()
+>>> user
+<User: david>
+>>> user.id
+1
+>>> user.pk
+1
+>>> user = User.objects.get(id=1)
+>>> user
+<User: david>
+>>> Post.objects.all()
+<QuerySet []>
+>>> post_1 = Post(title='Blog 1', content='First Post Content!', author=user)
+>>> Post.objects.all()
+<QuerySet []>
+>>> post_1.save()
+>>> Post.objects.all()
+<QuerySet [<Post: Post object (1)>]>
+
+
+django query construct to get all posts by a specific user
+user.modelname_set.all()
+
+
+
+>>> post = Post.objects.first()
+>>> post.content
+'First Post Content!'
+>>> post.date_posted
+datetime.datetime(2020, 4, 21, 22, 24, 21, 392709, tzinfo=<UTC>)
+>>> post.author
+<User: david>
+>>> post.author.email
+'dtauraso@gmail.com'
+>>> user.post_set
+<django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x106805f40>
+>>> user.post_set.all()
+<QuerySet [<Post: Blog 1>, <Post: Blog 2>]>
+>>> user.post_set
+<django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x106805a00>
+>>> user.post_set.all()
+<QuerySet [<Post: Blog 1>, <Post: Blog 2>]>
+>>> user.post_set.create(title='Blog 3', content='Third Post Content!')
+<Post: Blog 3>
