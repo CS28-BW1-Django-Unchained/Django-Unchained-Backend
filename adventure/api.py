@@ -31,16 +31,55 @@ def initialize(request):
     uuid = player.uuid
     room = player.room()
     sewer_rooms = Room.objects.filter(sewer=room.sewer)
+
+    '''
+    {
+        "rooms": [{
+            pk: 1
+            fields: {
+                title: "Outside Cave Entrance"
+                description: "North of you, the cave mount beckons"
+                n_to: 2
+                s_to: 0
+                e_to: 0
+                w_to: 0
+            }
+        },
+        {
+            
+        }]
+    }
+    '''
+    # sewer_map = {
+    #     "sewer": room.sewer,
+    #     "rooms": [{
+    #         'id': i.id,
+    #         'x': i.x,
+    #         'y': i.y,
+    #         'n_to': i.n_to,
+    #         's_to': i.s_to,
+    #         'e_to': i.e_to,
+    #         'w_to': i.w_to,
+    #     } for i in sewer_rooms]
+    # }
     sewer_map = {
         "sewer": room.sewer,
         "rooms": [{
+
             'id': i.id,
-            'x': i.x,
-            'y': i.y,
-            'n_to': i.n_to,
-            's_to': i.s_to,
-            'e_to': i.e_to,
-            'w_to': i.w_to,
+            'fields': {
+                # # 2d access from a grid(does the grid exist in the front end?)
+                # 'x': i.x,
+                # 'y': i.y,
+                'title': i.title,
+                'description': i.description,
+                # the room ids for the 4 directions
+                'n_to': i.n_to,
+                's_to': i.s_to,
+                'e_to': i.e_to,
+                'w_to': i.w_to,
+            }
+            
         } for i in sewer_rooms]
     }
     rooms_visited = PlayerVisited.objects.filter(player=player)
