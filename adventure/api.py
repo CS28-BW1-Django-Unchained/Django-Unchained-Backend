@@ -69,8 +69,8 @@ def initialize(request):
             'id': i.id,
             'fields': {
                 # # 2d access from a grid(does the grid exist in the front end?)
-                # 'x': i.x,
-                # 'y': i.y,
+                'x': i.x,
+                'y': i.y,
                 'title': i.title,
                 'description': i.description,
                 # the room ids for the 4 directions
